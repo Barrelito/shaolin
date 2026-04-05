@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --void: #0A0A0A;
+  --stone: #1A1917;
+  --iron: #2C2A26;
+  --ash: #6B6560;
+  --bone: #C4B9A8;
+  --ember: #C97B3A;
+  --blood: #8B1A1A;
+  --incense: #DAA520;
+  --level-novis: #4A7C59;
+  --level-larjunge: #2E6B8A;
+  --level-krigare: #8B4513;
+  --level-discipel: #6B3A6B;
+  --level-munk: #A33B3B;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-stone: var(--stone);
+  --color-iron: var(--iron);
+  --color-ash: var(--ash);
+  --color-bone: var(--bone);
+  --color-ember: var(--ember);
+  --color-blood: var(--blood);
+  --color-incense: var(--incense);
+  --color-level-novis: var(--level-novis);
+  --color-level-larjunge: var(--level-larjunge);
+  --color-level-krigare: var(--level-krigare);
+  --color-level-discipel: var(--level-discipel);
+  --color-level-munk: var(--level-munk);
+  --font-display: var(--font-dm-serif-display);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+body {
+  background-color: var(--void);
+  color: var(--bone);
+  position: relative;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
