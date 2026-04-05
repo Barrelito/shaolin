@@ -6,6 +6,7 @@ import { useProtocol } from "@/lib/hooks";
 import { getSessions } from "@/lib/storage";
 import type { Session } from "@/lib/types";
 import PathVisualization from "@/components/PathVisualization";
+import PageTransition from "@/components/PageTransition";
 
 type OverlayData = {
   dayRange: [number, number];
@@ -60,6 +61,7 @@ export default function PathPage() {
   }, []);
 
   return (
+    <PageTransition>
     <main className="relative flex flex-col h-screen bg-void">
       {/* Header */}
       <div className="flex items-center px-4 py-3 shrink-0">
@@ -131,5 +133,6 @@ export default function PathPage() {
         </div>
       )}
     </main>
+    </PageTransition>
   );
 }

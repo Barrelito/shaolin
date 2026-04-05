@@ -6,6 +6,7 @@ import { useProtocol, useStreak } from "@/lib/hooks";
 import { saveProfile } from "@/lib/storage";
 import { formatLocalDate } from "@/lib/dayCalculation";
 import StreakIndicator from "@/components/StreakIndicator";
+import PageTransition from "@/components/PageTransition";
 
 const MILESTONE_DAYS = [100, 200, 300, 400, 500];
 
@@ -24,6 +25,7 @@ export default function Home() {
   }
 
   return (
+    <PageTransition>
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       {/* Navigation — top-right, discreet */}
       <nav className="absolute top-6 right-6 flex gap-4">
@@ -88,5 +90,6 @@ export default function Home() {
         currentStreak={currentStreak}
       />
     </main>
+    </PageTransition>
   );
 }

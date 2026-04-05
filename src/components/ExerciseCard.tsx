@@ -1,3 +1,6 @@
+"use client";
+
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { Exercise } from "@/lib/types";
 import Timer from "./Timer";
 
@@ -26,6 +29,9 @@ export default function ExerciseCard({
   onTimerComplete,
   onTimerCancel,
 }: ExerciseCardProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const animDuration = prefersReducedMotion ? 0 : 0.3;
+
   return (
     <div
       className="bg-stone mb-3"
@@ -60,6 +66,7 @@ export default function ExerciseCard({
               fontSize: "14px",
               color: "var(--bone)",
               lineHeight: 1,
+              transition: "background-color 200ms ease, border-color 200ms ease",
             }}
           >
             {checked && "\u2713"}
@@ -105,14 +112,25 @@ export default function ExerciseCard({
         )}
       </div>
 
-      {/* Inline Timer */}
-      {timerActive && exercise.timer_seconds != null && onTimerComplete && onTimerCancel && (
-        <Timer
-          seconds={exercise.timer_seconds}
-          onComplete={onTimerComplete}
-          onCancel={onTimerCancel}
-        />
-      )}
+      {/* Inline Timer with AnimatePresence */}
+      <AnimatePresence>
+        {timerActive && exercise.timer_seconds != null && onTimerComplete && onTimerCancel && (
+          <motion.div
+            key="timer"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: animDuration, ease: "easeOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            <Timer
+              seconds={exercise.timer_seconds}
+              onComplete={onTimerComplete}
+              onCancel={onTimerCancel}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

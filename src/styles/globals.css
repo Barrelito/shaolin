@@ -52,6 +52,13 @@
   --font-mono: var(--font-ibm-plex-mono);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   background-color: var(--void);
   color: var(--bone);

@@ -12,6 +12,7 @@ import {
   importData,
 } from "@/lib/storage";
 import type { Profile } from "@/lib/types";
+import PageTransition from "@/components/PageTransition";
 
 const LEVEL_OPTIONS = [
   { value: "auto", label: "Auto (baserat pa dag)" },
@@ -154,6 +155,7 @@ export default function SettingsPage() {
   };
 
   return (
+    <PageTransition>
     <main className="flex flex-col flex-1 bg-void px-6 py-8 max-w-md mx-auto w-full">
       {/* Back link */}
       <Link
@@ -275,5 +277,6 @@ export default function SettingsPage() {
         />
       )}
     </main>
+    </PageTransition>
   );
 }
