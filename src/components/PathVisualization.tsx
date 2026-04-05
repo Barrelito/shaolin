@@ -136,7 +136,6 @@ export default function PathVisualization({
         const zone = getLevelZone(day);
         const isCurrent = day === nearestNodeDay;
         const completed = isCompleted(day);
-        const isUpcoming = day > currentDay && !completed;
 
         return (
           <button

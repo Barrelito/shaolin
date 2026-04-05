@@ -17,7 +17,6 @@ export default function PathPage() {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [overlay, setOverlay] = useState<OverlayData | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const currentNodeRef = useRef<HTMLDivElement>(null);
 
   // Load sessions on mount
   useEffect(() => {
@@ -81,13 +80,11 @@ export default function PathPage() {
         ref={scrollRef}
         className="flex-1 overflow-y-auto overflow-x-hidden"
       >
-        <div ref={currentNodeRef}>
-          <PathVisualization
-            currentDay={dayNumber}
-            completedDays={completedDays}
-            onNodeTap={handleNodeTap}
-          />
-        </div>
+        <PathVisualization
+          currentDay={dayNumber}
+          completedDays={completedDays}
+          onNodeTap={handleNodeTap}
+        />
       </div>
 
       {/* Overlay for tapped node */}
