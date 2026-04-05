@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useProtocol, useSession } from "@/lib/hooks";
 import BlockHeader from "@/components/BlockHeader";
@@ -8,6 +9,7 @@ import LogEntry from "@/components/LogEntry";
 
 export default function SessionPage() {
   const { dayNumber, level, todayCompleted } = useProtocol();
+  const [activeTimerId, setActiveTimerId] = useState<string | null>(null);
 
   const totalExercises = level.blocks.reduce(
     (sum, block) => sum + block.exercises.length,
@@ -75,9 +77,17 @@ export default function SessionPage() {
               exercise={exercise}
               checked={checkedIds.has(exercise.id)}
               onToggle={() => toggleExercise(exercise.id)}
+              timerActive={activeTimerId === exercise.id}
               onTimerStart={
-                exercise.timer_seconds != null ? () => {} : undefined
+                exercise.timer_seconds != null
+                  ? () => setActiveTimerId(exercise.id)
+                  : undefined
               }
+              onTimerComplete={() => {
+                toggleExercise(exercise.id);
+                setActiveTimerId(null);
+              }}
+              onTimerCancel={() => setActiveTimerId(null)}
             />
           ))}
           {block.id === lastBlockId && (
