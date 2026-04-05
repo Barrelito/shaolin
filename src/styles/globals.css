@@ -16,7 +16,13 @@
   --level-munk: #A33B3B;
 }
 
+@keyframes ember-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
 @theme inline {
+  --animate-ember-pulse: ember-pulse 3s ease-in-out infinite;
   --color-void: var(--void);
   --color-stone: var(--stone);
   --color-iron: var(--iron);
