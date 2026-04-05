@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useProtocol, useSession } from "@/lib/hooks";
+import { playGong, triggerVibration } from "@/lib/audio";
 import BlockHeader from "@/components/BlockHeader";
 import ExerciseCard from "@/components/ExerciseCard";
 import LogEntry from "@/components/LogEntry";
@@ -85,6 +86,8 @@ export default function SessionPage() {
               }
               onTimerComplete={() => {
                 toggleExercise(exercise.id);
+                playGong();
+                triggerVibration();
                 setActiveTimerId(null);
               }}
               onTimerCancel={() => setActiveTimerId(null)}
