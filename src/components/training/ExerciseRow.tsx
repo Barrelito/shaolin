@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ExerciseDef, WorkoutType } from "@/lib/training/exercises";
 import { useExerciseLog } from "@/lib/training/hooks";
 import { parseSetCount } from "@/lib/training/exercises";
+import ProgressSparkline from "./ProgressSparkline";
 
 export default function ExerciseRow({
   exercise,
@@ -148,11 +149,14 @@ export default function ExerciseRow({
         })}
       </ul>
 
-      {lastWeight != null && lastWeight > 0 ? (
-        <p className="font-mono text-ash/60 text-[10px] mt-2">
-          Senaste: {lastWeight} kg
-        </p>
-      ) : null}
+      <div className="mt-2 flex items-center gap-4 flex-wrap">
+        {lastWeight != null && lastWeight > 0 ? (
+          <p className="font-mono text-ash/60 text-[10px]">
+            Senaste: {lastWeight} kg
+          </p>
+        ) : null}
+        <ProgressSparkline exerciseId={exercise.id} />
+      </div>
     </article>
   );
 }

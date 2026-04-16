@@ -9,9 +9,16 @@ export default function Hero({
 }) {
   return (
     <section className="px-6 pt-14 pb-10 border-b border-iron">
-      <p className="font-mono text-ash text-[10px] tracking-[4px] mb-4">
-        {isDeload ? "DELOADVECKA" : `VECKA ${week} AV ${totalWeeks}`}
-      </p>
+      <div className="flex items-center gap-3 mb-4">
+        <p className="font-mono text-ash text-[10px] tracking-[4px]">
+          VECKA {week} AV {totalWeeks}
+        </p>
+        {isDeload ? (
+          <span className="font-mono text-ember text-[10px] tracking-[3px] border border-ember/60 px-2 py-0.5">
+            DELOAD
+          </span>
+        ) : null}
+      </div>
       <h1 className="font-display text-bone text-[40px] sm:text-[48px] leading-tight mb-3">
         Styrketräning 2×/vecka
       </h1>
@@ -24,6 +31,11 @@ export default function Hero({
         muskeltillväxt vid sidan av jobb, familj och kreativa projekt — inte
         för att maxa varje pass tills du ligger på golvet.
       </p>
+      {isDeload ? (
+        <p className="mt-4 font-mono text-ember/90 text-[11px] leading-relaxed max-w-xl">
+          Deloadvecka: halvera volymen (färre set), behåll vikten och RIR. Kroppen läker, nervsystemet kommer ikapp.
+        </p>
+      ) : null}
     </section>
   );
 }

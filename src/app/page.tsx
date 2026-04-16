@@ -10,6 +10,7 @@ import WorkoutCard from "@/components/training/WorkoutCard";
 import SprintSection from "@/components/training/SprintSection";
 import ProgressionPrinciple from "@/components/training/ProgressionPrinciple";
 import EvidenceSection from "@/components/training/EvidenceSection";
+import DataControls from "@/components/training/DataControls";
 import PageTransition from "@/components/PageTransition";
 
 export default function Home() {
@@ -30,7 +31,8 @@ export default function Home() {
         <SprintSection />
         <ProgressionPrinciple />
         <EvidenceSection />
-        <footer className="px-6 py-10 text-center">
+        <footer className="px-6 py-10 flex flex-col items-center gap-6">
+          <DataControls />
           <p className="font-mono text-ash/60 text-[10px] tracking-[3px]">
             THE IRON PATH · 12 VECKOR
           </p>
