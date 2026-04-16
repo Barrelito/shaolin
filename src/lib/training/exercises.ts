@@ -173,6 +173,21 @@ export const WEEK_SCHEDULE: WeekDay[] = [
   { label: "Söndag", short: "Sön", kind: "rest", detail: "Vila" },
 ];
 
+export function parseSetCount(setsReps: string): number {
+  const byCross = setsReps.match(/^\s*(\d+)\s*[×x]/);
+  if (byCross) return parseInt(byCross[1], 10);
+  const bySet = setsReps.match(/^\s*(\d+)\s*set/i);
+  if (bySet) return parseInt(bySet[1], 10);
+  return 3;
+}
+
+export function getTodaysWorkout(date: Date = new Date()): WorkoutType | null {
+  const day = date.getDay();
+  if (day === 1) return "A";
+  if (day === 4) return "B";
+  return null;
+}
+
 export function getExerciseById(id: string): ExerciseDef | null {
   for (const w of Object.values(WORKOUTS)) {
     const found = w.exercises.find((e) => e.id === id);

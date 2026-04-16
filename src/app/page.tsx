@@ -1,6 +1,8 @@
 "use client";
 
-import { PASS_A, PASS_B } from "@/lib/training/exercises";
+import { useEffect, useState } from "react";
+import { PASS_A, PASS_B, getTodaysWorkout } from "@/lib/training/exercises";
+import type { WorkoutType } from "@/lib/training/exercises";
 import { useProgramWeek } from "@/lib/training/hooks";
 import Hero from "@/components/training/Hero";
 import WeeklySchedule from "@/components/training/WeeklySchedule";
@@ -12,14 +14,19 @@ import PageTransition from "@/components/PageTransition";
 
 export default function Home() {
   const { week, isDeload, totalWeeks } = useProgramWeek();
+  const [todays, setTodays] = useState<WorkoutType | null>(null);
+
+  useEffect(() => {
+    setTodays(getTodaysWorkout());
+  }, []);
 
   return (
     <PageTransition>
       <main className="mx-auto w-full max-w-3xl">
         <Hero week={week} totalWeeks={totalWeeks} isDeload={isDeload} />
         <WeeklySchedule />
-        <WorkoutCard workout={PASS_A} />
-        <WorkoutCard workout={PASS_B} />
+        <WorkoutCard workout={PASS_A} isToday={todays === "A"} />
+        <WorkoutCard workout={PASS_B} isToday={todays === "B"} />
         <SprintSection />
         <ProgressionPrinciple />
         <EvidenceSection />
